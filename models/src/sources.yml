@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: raw
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+    config:
+      enabled: true
+    tables:
+      - name: orders
+        columns:
+          - name: o_orderkey
+            tests:
+              - unique
+              - not_null
+                  
