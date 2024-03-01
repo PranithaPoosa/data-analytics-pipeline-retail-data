@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: raw
+    description: source table(TPCH_SF1)
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+    config:
+      enabled: true
+    tables:
+      - name: orders
+        description: main order tracking table
+        columns:
+          - name: o_orderkey
+            tests:
+              - unique
+              - not_null
+      - name: lineitem
+        description: main lineitem table
+        columns:
+          - name: l_orderkey
+            description: Foreign Key to o_orderkey
+            tests:
+              - relationships:
+                  to: source('raw', 'orders')
+                  field: o_orderkey
+
+                  
