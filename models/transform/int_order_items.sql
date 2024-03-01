@@ -1,9 +1,4 @@
-{{ config(
 
-      materialized="table",
-      snowflake_warehouse= "snowflake_dbt_WH_large"
-)
-}}
 with orders as (
     
     select * from {{ ref("stg_orders") }}
